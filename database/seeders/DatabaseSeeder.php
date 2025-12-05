@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         // RMUser::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test RMUser',
-            'email' => 'test@example.com',
+            'name' => 'admin',
+            'email' => 'admin@test.com',
         ]);
     }
 }
