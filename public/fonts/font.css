@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'sst-arabic';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/arfonts-sst-arabic-medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'sst-arabic';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/arfonts-sst-arabic-medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'sst-arabic';
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/arfonts-sst-arabic-light.ttf') format('truetype');
+}
