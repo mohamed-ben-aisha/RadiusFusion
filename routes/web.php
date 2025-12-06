@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\RM\RMInvoice;
+use App\Models\User;
+use App\Services\DMARadiusService;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,29 +19,43 @@ Route::get('/', function () {
         'strict' => false,
         'engine' => null,
     ];
-    Config::set('database.connections.dynamic_mysql', $config);
+//    Config::set('database.connections.dynamic_mysql', $config);
+//
+//    DB::purge('dynamic_mysql');
+//    DB::reconnect('dynamic_mysql');
 
-    DB::purge('dynamic_mysql');
-    DB::reconnect('dynamic_mysql');
-
-    RMInvoice::insert([
+    $dma = new DMARadiusService($config);
+    $invoice = $dma->addCredits([
         'invgroup' => '0',
-        'invnum' => '2025-0003',
-        'managername' => 'admin',
+        'invnum' => '2025-0010',
+        'managername' => 'RadiusFusion',
         'username' => 'user',
-        'service' => 'DMA Portal',
+        'service' => 'Swift 200GB',
         'date' => '2025-01-01',
+        'comment' => 'mohamed',
+        'amount' => '1',
+        'price' => '100',
+        'bytescomb' => 1,
+        'comblimit' => 1,
+        'days' => '30',
+        'expiration' => '2026-01-31',
     ]);
 
-    RMInvoice::insert([
-        'invgroup' => '1',
-        'managername' => 'admin',
-        'username' => 'admin',
-        'service' => 'DMA Portal',
+    $dma->removeCredits([
+        'invgroup' => '0',
+        'invnum' => '2025-0010',
+        'managername' => 'RadiusFusion',
+        'username' => 'user',
+        'service' => 'Swift 200GB',
         'date' => '2025-01-01',
+        'comment' => 'mohamed',
+        'amount' => '1',
+        'price' => '100',
+        'bytescomb' => 1,
+        'comblimit' => 1,
+        'days' => '30',
+        'expiration' => '2026-01-31',
     ]);
-
-    $invoice = RMInvoice::where('invnum', '2025-0003')->first();
 
     return [
         $invoice,
