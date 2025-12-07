@@ -1,12 +1,17 @@
 <?php
 
-use App\Models\RM\RMInvoice;
+use App\Helpers\ConverterUnitHelper;
 use App\Models\RM\RMUser;
-use App\Models\User;
 use App\Services\DMARadiusService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+
+Route::get('/test', function () {
     $config = [
         'driver' => 'mysql',
         'host' => '192.168.0.71',
@@ -62,6 +67,6 @@ Route::get('/', function () {
 
     return [
         //$invoice,
-        $user->srvid,
+        ConverterUnitHelper::convertBitesToOtherUnit($user->service->getRawOriginal('downrate')),
     ];
 });
