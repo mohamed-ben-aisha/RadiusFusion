@@ -53,4 +53,42 @@ class DMARadiusService
             'expiration' => $data['expiration'],
         ]);
     }
+
+    public function addDeposit(array $data)
+    {
+        return RMInvoice::create([
+            'invgroup' => '0',
+            'invnum' => '2025-0010',
+            'managername' => 'RadiusFusion',
+            'username' => $data['username'],
+            'service' => 'Deposit',
+            'date' => $data['date'],
+            'comment' => $data['comment'],
+            'amount' => $data['amount'],
+            'price' => $data['price'],
+            'bytescomb' => 0,
+            'comblimit' => 0,
+            'days' => 0,
+            'expiration' => $data['expiration'],
+        ]);
+    }
+
+    public function addWithdraw(array $data)
+    {
+        return RMInvoice::create([
+            'invgroup' => '0',
+            'invnum' => '2025-0010',
+            'managername' => 'RadiusFusion',
+            'username' => $data['username'],
+            'service' => 'Withdraw',
+            'date' => $data['date'],
+            'comment' => $data['comment'],
+            'amount' => $data['amount'],
+            'price' => $data['price'],
+            'bytescomb' => 0,
+            'comblimit' => 0,
+            'days' => 0,
+            'expiration' => $data['expiration'],
+        ]);
+    }
 }

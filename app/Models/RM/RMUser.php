@@ -17,7 +17,26 @@ class RMUser extends Model
 
     protected $fillable = [
         'username',
+        'uplimit',
+        'downlimit',
+        'comblimit',
+        'firstname',
+        'lastname',
+        'company',
+        'phone',
+        'mobile',
+        'address',
+        'comment',
+        'expiration',
+        'uptimelimit',
         'sevid',
+        'createdon',
+        'acctype',
+        'credits',
+        'createdby',
+        'owner',
+        'lang',
+        'lastlogoff',
     ];
 
     public function service(): BelongsTo
