@@ -10,7 +10,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
 Route::get('/test', function () {
     $config = [
         'driver' => 'mysql',
@@ -25,48 +24,48 @@ Route::get('/test', function () {
         'strict' => false,
         'engine' => null,
     ];
-//    Config::set('database.connections.dynamic_mysql', $config);
-//
-//    DB::purge('dynamic_mysql');
-//    DB::reconnect('dynamic_mysql');
+    //    Config::set('database.connections.dynamic_mysql', $config);
+    //
+    //    DB::purge('dynamic_mysql');
+    //    DB::reconnect('dynamic_mysql');
 
     $dma = new DMARadiusService($config);
-//    $invoice = $dma->addCredits([
-//        'invgroup' => '0',
-//        'invnum' => '2025-0010',
-//        'managername' => 'RadiusFusion',
-//        'username' => 'user',
-//        'service' => 'Swift 200GB',
-//        'date' => '2025-01-01',
-//        'comment' => 'mohamed',
-//        'amount' => '1',
-//        'price' => '100',
-//        'bytescomb' => 1,
-//        'comblimit' => 1,
-//        'days' => '30',
-//        'expiration' => '2026-01-31',
-//    ]);
-//
-//    $dma->removeCredits([
-//        'invgroup' => '0',
-//        'invnum' => '2025-0010',
-//        'managername' => 'RadiusFusion',
-//        'username' => 'user',
-//        'service' => 'Swift 200GB',
-//        'date' => '2025-01-01',
-//        'comment' => 'mohamed',
-//        'amount' => '1',
-//        'price' => '100',
-//        'bytescomb' => 1,
-//        'comblimit' => 1,
-//        'days' => '30',
-//        'expiration' => '2026-01-31',
-//    ]);
+    //    $invoice = $dma->addCredits([
+    //        'invgroup' => '0',
+    //        'invnum' => '2025-0010',
+    //        'managername' => 'RadiusFusion',
+    //        'username' => 'user',
+    //        'service' => 'Swift 200GB',
+    //        'date' => '2025-01-01',
+    //        'comment' => 'mohamed',
+    //        'amount' => '1',
+    //        'price' => '100',
+    //        'bytescomb' => 1,
+    //        'comblimit' => 1,
+    //        'days' => '30',
+    //        'expiration' => '2026-01-31',
+    //    ]);
+    //
+    //    $dma->removeCredits([
+    //        'invgroup' => '0',
+    //        'invnum' => '2025-0010',
+    //        'managername' => 'RadiusFusion',
+    //        'username' => 'user',
+    //        'service' => 'Swift 200GB',
+    //        'date' => '2025-01-01',
+    //        'comment' => 'mohamed',
+    //        'amount' => '1',
+    //        'price' => '100',
+    //        'bytescomb' => 1,
+    //        'comblimit' => 1,
+    //        'days' => '30',
+    //        'expiration' => '2026-01-31',
+    //    ]);
 
     $user = RMUser::where('username', 'user')->first();
 
     return [
-        //$invoice,
+        // $invoice,
         ConverterUnitHelper::convertBitesToOtherUnit($user->service->getRawOriginal('downrate')),
     ];
 });

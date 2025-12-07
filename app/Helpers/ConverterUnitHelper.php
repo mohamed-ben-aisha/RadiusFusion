@@ -15,6 +15,6 @@ class ConverterUnitHelper
             $i++;
         }
 
-        return round($bytes, 2) . ' ' . $units[$i];
+        return round($bytes, 2).' '.$units[$i];
     }
 }

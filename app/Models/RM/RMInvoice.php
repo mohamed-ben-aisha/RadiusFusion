@@ -10,6 +10,7 @@ class RMInvoice extends Model
     protected $connection = 'dynamic_mysql';
 
     protected $table = 'rm_invoices';
+
     public $timestamps = false;
 
     protected $fillable = [

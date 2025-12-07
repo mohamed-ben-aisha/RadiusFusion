@@ -2,14 +2,15 @@
 
 namespace App\Models\RM;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 
 class RMService extends Model
 {
     protected $connection = 'dynamic_mysql';
 
     protected $table = 'rm_services';
+
     public $timestamps = false;
 
     protected $primaryKey = 'srvid';
