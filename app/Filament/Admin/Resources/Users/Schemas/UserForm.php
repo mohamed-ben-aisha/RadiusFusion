@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\Schemas;
+namespace App\Filament\Admin\Resources\Users\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
@@ -13,6 +13,8 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->required(),
+                TextInput::make('username')
                     ->required(),
                 TextInput::make('email')
                     ->label('Email address')
