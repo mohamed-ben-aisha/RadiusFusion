@@ -1,4 +1,10 @@
 {
+    "Downrate": "سرعة التحميل",
+    "Uprate": "سرعة الرفع",
+    "Unit price": "سعر الوحدة",
+    "Service name": "اسم الخطة",
+    "Create Service": "انشاء خطة جديدة",
+    "Services": "الخطط والباقات",
     "Connection failed": "فشل الاتصال",
     "Connection failed to the server. Please check the server credentials.": "فشل الاتصال بالخادم. الرجاء التحقق من بيانات الاعتماد للخادم.",
     "List NAS": "قائمة NAS",

@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\Servers\Pages\CreateServer;
 use App\Filament\Admin\Resources\Servers\Pages\EditServer;
 use App\Filament\Admin\Resources\Servers\Pages\ListServers;
 use App\Filament\Admin\Resources\Servers\Pages\ManageNas;
+use App\Filament\Admin\Resources\Servers\Pages\ManageService;
 use App\Filament\Admin\Resources\Servers\Schemas\ServerForm;
 use App\Filament\Admin\Resources\Servers\Tables\ServersTable;
 use App\Models\Server;
@@ -69,6 +70,7 @@ class ServerResource extends Resource
         return $page->generateNavigationItems([
             EditServer::class,
             ManageNas::class,
+            ManageService::class,
         ]);
     }
 
@@ -79,6 +81,7 @@ class ServerResource extends Resource
             'create' => CreateServer::route('/create'),
             'edit' => EditServer::route('/{record}/edit'),
             'manage-nas' => ManageNas::route('/{record}/manage-nas'),
+            'manage-service' => ManageService::route('/{record}/manage-service'),
         ];
     }
 }

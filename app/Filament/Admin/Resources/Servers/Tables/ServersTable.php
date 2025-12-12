@@ -48,7 +48,12 @@ class ServersTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->label(__('Server details'))
+                    ->hiddenLabel()
+                    ->icon('heroicon-o-server')
+                    ->hiddenLabel()
+                    ->tooltip(__('Server details')),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
