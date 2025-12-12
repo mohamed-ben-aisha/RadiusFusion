@@ -2,6 +2,7 @@
 
 use App\Helpers\ConverterUnitHelper;
 use App\Models\RM\RMUser;
+use App\Models\Server;
 use App\Services\DMARadiusService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,13 +12,15 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/test', function () {
+    $server = Server::first();
+
     $config = [
         'driver' => 'mysql',
-        'host' => '192.168.0.71',
-        'port' => 3306,
-        'database' => 'radius',
-        'username' => 'stt',
-        'password' => 'pass1234',
+        'host' => $server->host,
+        'port' => $server->port,
+        'database' => $server->db_name,
+        'username' => $server->user,
+        'password' => $server->password,
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
         'prefix' => '',
@@ -62,10 +65,15 @@ Route::get('/test', function () {
     //        'expiration' => '2026-01-31',
     //    ]);
 
-    $user = RMUser::where('username', 'user')->first();
+    try {
+        $user = RMUser::where('username', 'user')->first();
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
 
     return [
         // $invoice,
-        ConverterUnitHelper::convertBitesToOtherUnit($user->service->getRawOriginal('downrate')),
+        $user,
+        //        ConverterUnitHelper::convertBitesToOtherUnit($user->service->getRawOriginal('downrate')),
     ];
 });
