@@ -14,8 +14,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('host');
             $table->string('port');
-            $table->string('user');
-            $table->string('password');
+            $table->string('db_user');
+            $table->string('db_password');
             $table->string('db_name');
             $table->timestamps();
         });

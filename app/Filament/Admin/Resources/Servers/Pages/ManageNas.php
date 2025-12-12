@@ -8,6 +8,7 @@ use App\Models\RM\RMNas;
 use App\Models\Server;
 use Config;
 use Filament\Actions\Action;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
@@ -15,6 +16,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
+use PDO;
 
 class ManageNas extends Page implements HasTable
 {
@@ -25,6 +27,8 @@ class ManageNas extends Page implements HasTable
 
     protected string $view = 'filament.admin.resources.servers.pages.manage-nas';
 
+    public bool $connectionFailed = false;
+
     public static function getNavigationLabel(): string
     {
         return __('List NAS');
@@ -33,12 +37,26 @@ class ManageNas extends Page implements HasTable
     public function mount(int|string $record): void
     {
         $this->record = $this->resolveRecord($record);
+
+        try {
+            $this->getConnectionConfig();
+
+            DB::connection('dynamic_mysql')->select('SELECT 1');
+        } catch (\Throwable $e) {
+            $this->connectionFailed = true;
+
+            Notification::make()
+                ->title(__('Connection failed'))
+                ->body(__('Connection failed to the server. Please check the server credentials.'))
+                ->danger()
+                ->send();
+        }
     }
 
     protected function table(Table $table): Table
     {
         return $table
-            ->query($this->getTableQuery())
+            ->query(fn ($query) => $this->getTableQuery())
             ->columns([
                 TextColumn::make('nasname')
                     ->label(__('Host'))
@@ -92,31 +110,12 @@ class ManageNas extends Page implements HasTable
 
     public function getTableQuery(): \Illuminate\Database\Eloquent\Builder
     {
-        $server = Server::find($this->record->id);
-
-        $config = [
-            'driver' => 'mysql',
-            'host' => $server->host,
-            'port' => $server->port,
-            'database' => $server->db_name,
-            'username' => $server->user,
-            'password' => $server->password,
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => false,
-            'engine' => null,
-        ];
-
-        Config::set('database.connections.dynamic_mysql', $config);
-
-        DB::purge('dynamic_mysql');
-        DB::reconnect('dynamic_mysql');
+        $this->getConnectionConfig();
 
         return RMNas::query();
     }
 
-    public function actionNas(array $data, $record = null): void
+    private function getConnectionConfig(): void
     {
         $server = Server::find($this->record->id);
 
@@ -125,19 +124,28 @@ class ManageNas extends Page implements HasTable
             'host' => $server->host,
             'port' => $server->port,
             'database' => $server->db_name,
-            'username' => $server->user,
-            'password' => $server->password,
+            'username' => $server->db_user,
+            'password' => $server->db_password,
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => false,
             'engine' => null,
+
+            'options' => [
+                PDO::ATTR_TIMEOUT => 3,
+            ],
         ];
 
         Config::set('database.connections.dynamic_mysql', $config);
 
         DB::purge('dynamic_mysql');
         DB::reconnect('dynamic_mysql');
+    }
+
+    public function actionNas(array $data, $record = null): void
+    {
+        $this->getConnectionConfig();
 
         if ($record === null) {
             RMNas::create($data);

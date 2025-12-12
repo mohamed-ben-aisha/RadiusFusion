@@ -27,12 +27,13 @@ class ServerForm
                         TextInput::make('port')
                             ->label(__('Port'))
                             ->required(),
-                        TextInput::make('user')
+                        TextInput::make('db_user')
                             ->label(__('User DB'))
                             ->required(),
-                        TextInput::make('password')
+                        TextInput::make('db_password')
                             ->label(__('Password DB'))
                             ->password()
+                            ->revealable()
                             ->required(),
                         TextInput::make('db_name')
                             ->label(__('Database name'))

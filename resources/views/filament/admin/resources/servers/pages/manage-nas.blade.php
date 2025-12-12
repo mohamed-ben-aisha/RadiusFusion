@@ -1,3 +1,7 @@
 <x-filament-panels::page>
-    {{ $this->table }}
+    @if ($this->connectionFailed)
+        @lang('Connection failed to the server. Please check the server credentials.')
+    @else
+        {{ $this->table }}
+    @endif
 </x-filament-panels::page>

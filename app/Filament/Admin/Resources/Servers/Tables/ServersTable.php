@@ -27,7 +27,7 @@ class ServersTable
                 TextColumn::make('port')
                     ->label(__('Port'))
                     ->searchable(),
-                TextColumn::make('user')
+                TextColumn::make('db_user')
                     ->label(__('User DB'))
                     ->searchable(),
                 TextColumn::make('db_name')
