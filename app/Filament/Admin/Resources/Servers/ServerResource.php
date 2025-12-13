@@ -45,7 +45,7 @@ class ServerResource extends Resource
 
     public static function getNavigationGroup(): string
     {
-        return __('Servers Management');
+        return __('System Management');
     }
 
     public static function form(Schema $schema): Schema

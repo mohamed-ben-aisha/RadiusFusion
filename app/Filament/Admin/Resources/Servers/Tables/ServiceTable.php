@@ -18,11 +18,12 @@ class ServiceTable
                 TextColumn::make('descr')
                     ->label(__('Description')),
                 TextColumn::make('downrate')
-                    ->label(__('Downrate')),
+                    ->label(__('Downrate').' (Mbps)'),
                 TextColumn::make('uprate')
-                    ->label(__('Uprate')),
+                    ->label(__('Uprate').' (Mbps)'),
                 TextColumn::make('unitprice')
-                    ->label(__('Unit price')),
+                    ->label(__('Unit price'))
+                    ->formatStateUsing(fn ($state) => number_format($state, 2)),
             ]);
     }
 }
