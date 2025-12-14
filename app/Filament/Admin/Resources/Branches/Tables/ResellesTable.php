@@ -1,37 +1,38 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Servers\Tables;
+namespace App\Filament\Admin\Resources\Branches\Tables;
 
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ServersTable
+class ResellesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
-            ->emptyStateHeading(__('No servers found'))
             ->columns([
                 TextColumn::make('name')
-                    ->label(__('Server name'))
+                    ->label(__('Reseller name'))
                     ->searchable(),
-                TextColumn::make('description')
-                    ->label(__('Description'))
+                TextColumn::make('branch.name')
+                    ->label(__('Branch'))
                     ->searchable(),
-                TextColumn::make('host')
-                    ->label(__('Host'))
+                TextColumn::make('mobile')
+                    ->label(__('Mobile'))
                     ->searchable(),
-                TextColumn::make('port')
-                    ->label(__('Port'))
+                TextColumn::make('phone')
+                    ->label(__('Phone'))
                     ->searchable(),
-                TextColumn::make('db_user')
-                    ->label(__('User DB'))
+                TextColumn::make('credits')
+                    ->label(__('Credits'))
+                    ->sortable(),
+                TextColumn::make('comment')
+                    ->label(__('Comment'))
                     ->searchable(),
-                TextColumn::make('db_name')
-                    ->label(__('Database name'))
+                TextColumn::make('status')
+                    ->label(__('Status'))
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label(__('Created at'))
@@ -49,16 +50,14 @@ class ServersTable
             ])
             ->recordActions([
                 EditAction::make()
-                    ->label(__('Server details'))
+                    ->label(__('Reseller details'))
                     ->hiddenLabel()
-                    ->icon('heroicon-o-server')
+                    ->icon('heroicon-o-pencil')
                     ->hiddenLabel()
-                    ->tooltip(__('Server details')),
+                    ->tooltip(__('Edit')),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                DeleteBulkAction::make(),
             ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Servers\Tables;
+namespace App\Filament\Admin\Resources\Branches\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,38 +8,23 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ServersTable
+class BranchesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
-            ->emptyStateHeading(__('No servers found'))
             ->columns([
                 TextColumn::make('name')
-                    ->label(__('Server name'))
                     ->searchable(),
-                TextColumn::make('description')
-                    ->label(__('Description'))
+                TextColumn::make('server.name')
                     ->searchable(),
-                TextColumn::make('host')
-                    ->label(__('Host'))
-                    ->searchable(),
-                TextColumn::make('port')
-                    ->label(__('Port'))
-                    ->searchable(),
-                TextColumn::make('db_user')
-                    ->label(__('User DB'))
-                    ->searchable(),
-                TextColumn::make('db_name')
-                    ->label(__('Database name'))
+                TextColumn::make('comment')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->label(__('Created at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->label(__('Updated at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -48,12 +33,7 @@ class ServersTable
                 //
             ])
             ->recordActions([
-                EditAction::make()
-                    ->label(__('Server details'))
-                    ->hiddenLabel()
-                    ->icon('heroicon-o-server')
-                    ->hiddenLabel()
-                    ->tooltip(__('Server details')),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

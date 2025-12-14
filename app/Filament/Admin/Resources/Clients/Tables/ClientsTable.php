@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Servers\Tables;
+namespace App\Filament\Admin\Resources\Clients\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -8,38 +8,47 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ServersTable
+class ClientsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
-            ->emptyStateHeading(__('No servers found'))
             ->columns([
-                TextColumn::make('name')
-                    ->label(__('Server name'))
+                TextColumn::make('firstname')
                     ->searchable(),
-                TextColumn::make('description')
-                    ->label(__('Description'))
+                TextColumn::make('lastname')
                     ->searchable(),
-                TextColumn::make('host')
-                    ->label(__('Host'))
+                TextColumn::make('username')
                     ->searchable(),
-                TextColumn::make('port')
-                    ->label(__('Port'))
+                TextColumn::make('company')
                     ->searchable(),
-                TextColumn::make('db_user')
-                    ->label(__('User DB'))
+                TextColumn::make('address')
                     ->searchable(),
-                TextColumn::make('db_name')
-                    ->label(__('Database name'))
+                TextColumn::make('email')
+                    ->label('Email address')
                     ->searchable(),
+                TextColumn::make('phone')
+                    ->searchable(),
+                TextColumn::make('mobile')
+                    ->searchable(),
+                TextColumn::make('srvid')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('expiration')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('uptimelimit')
+                    ->searchable(),
+                TextColumn::make('comment')
+                    ->searchable(),
+                TextColumn::make('acctype')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('created_at')
-                    ->label(__('Created at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->label(__('Updated at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -48,12 +57,7 @@ class ServersTable
                 //
             ])
             ->recordActions([
-                EditAction::make()
-                    ->label(__('Server details'))
-                    ->hiddenLabel()
-                    ->icon('heroicon-o-server')
-                    ->hiddenLabel()
-                    ->tooltip(__('Server details')),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

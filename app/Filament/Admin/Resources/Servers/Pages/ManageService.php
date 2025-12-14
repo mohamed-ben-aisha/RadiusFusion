@@ -2,10 +2,10 @@
 
 namespace App\Filament\Admin\Resources\Servers\Pages;
 
-use App\Filament\Admin\Resources\Servers\Schemas\NasForm;
+use App\Filament\Admin\Resources\Servers\Schemas\ServiceForm;
 use App\Filament\Admin\Resources\Servers\ServerResource;
-use App\Filament\Admin\Resources\Servers\Tables\NasTable;
-use App\Models\RM\RMNas;
+use App\Filament\Admin\Resources\Servers\Tables\ServiceTable;
+use App\Models\RM\RMService;
 use App\Models\Server;
 use Config;
 use Filament\Actions\Action;
@@ -18,7 +18,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Facades\DB;
 use PDO;
 
-class ManageNas extends Page implements HasTable
+class ManageService extends Page implements HasTable
 {
     use InteractsWithRecord;
     use InteractsWithTable;
@@ -29,14 +29,14 @@ class ManageNas extends Page implements HasTable
 
     public bool $connectionFailed = false;
 
-    public static function getNavigationLabel(): string
-    {
-        return __('List NAS');
-    }
-
     public function getTitle(): string
     {
-        return __('List NAS').' - '.$this->record->name;
+        return __('Services').' - '.$this->record->name;
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Services');
     }
 
     public function mount(int|string $record): void
@@ -60,29 +60,29 @@ class ManageNas extends Page implements HasTable
 
     protected function table(Table $table): Table
     {
-        return NasTable::configure($table)
+        return ServiceTable::configure($table)
             ->query(fn ($query) => $this->getTableQuery())
             ->filters([
                 //
             ])
             ->headerActions([
-                Action::make('nas_create')
-                    ->label(__('Create NAS'))
+                Action::make('service_create')
+                    ->label(__('Create Service'))
                     ->icon('heroicon-o-plus')
                     ->hiddenLabel()
-                    ->tooltip(__('Create NAS'))
-                    ->schema(NasForm::configure())
+                    ->tooltip(__('Create Service'))
+                    ->schema(ServiceForm::configure())
                     ->action(function (array $data) {
                         $this->actionNas($data);
                     }),
             ])
             ->recordActions([
-                Action::make('nas_edit')
-                    ->label(__('Edit NAS'))
+                Action::make('service_edit')
+                    ->label(__('Edit Service'))
                     ->icon('heroicon-o-pencil')
                     ->hiddenLabel()
                     ->tooltip(__('Edit'))
-                    ->schema(fn ($record) => NasForm::configure($record))
+                    ->schema(fn ($record) => ServiceForm::configure($record))
                     ->action(function (array $data, $record) {
                         $this->actionNas($data, $record);
                     }),
@@ -96,7 +96,7 @@ class ManageNas extends Page implements HasTable
     {
         $this->getConnectionConfig();
 
-        return RMNas::query();
+        return RMService::query();
     }
 
     private function getConnectionConfig(): void
@@ -132,9 +132,9 @@ class ManageNas extends Page implements HasTable
         $this->getConnectionConfig();
 
         if ($record === null) {
-            RMNas::create($data);
+            RMService::create($data);
         } else {
-            $nas = RMNas::find($record->id);
+            $nas = RMService::find($record->id);
             $nas->update($data);
             $nas->save();
         }
