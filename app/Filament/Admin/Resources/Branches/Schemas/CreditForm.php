@@ -2,7 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Branches\Schemas;
 
-use App\Models\Invoice;
+use App\Models\Transaction;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Grid;
 
@@ -33,7 +33,7 @@ class CreditForm
             $record->update(['credits' => $record->credits - $data['amount']]);
         }
 
-        Invoice::create([
+        Transaction::create([
             'number' => '2025-0001',
             'user_id' => auth()->user()->id,
             'reseller_id' => $record->id,
@@ -46,7 +46,7 @@ class CreditForm
             'status' => 'paid',
         ]);
 
-        Invoice::create([
+        Transaction::create([
             'number' => '2025-0001',
             'user_id' => $record->id,
             'type' => 'reseller',

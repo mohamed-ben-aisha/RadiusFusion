@@ -1,4 +1,10 @@
 {
+    "Transaction": "عملية",
+    "Transactions": "العمليات",
+    "Created at": "تاريخ الإنشاء",
+    "Updated at": "تاريخ التحديث",
+    "Branch name": "اسم الفرع",
+    "Branch details": "بيانات الفرع",
     "Password confirmation": "تأكيد كلمة المرور",
     "Email address": "البريد الإلكتروني",
     "Amount": "المبلغ",

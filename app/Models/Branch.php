@@ -11,6 +11,7 @@ class branch extends Model
     protected $fillable = [
         'name',
         'server_id',
+        'credits',
         'comment',
     ];
 

@@ -8,11 +8,12 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('number')->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('reseller_id')->nullable()->references('id')->on('resellers');
+            $table->foreignId('branch_id')->nullable()->references('id')->on('branches');
             $table->foreignId('client_id')->nullable()->references('id')->on('clients');
             $table->string('type')->default('client');
             $table->string('service')->nullable();
