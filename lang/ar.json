@@ -1,4 +1,8 @@
 {
+    "Company": "الشركة",
+    "Transaction number": "رقم العملية",
+    "Transaction type": "نوع العملية",
+    "Service": "الخدمة",
     "Transaction": "عملية",
     "Transactions": "العمليات",
     "Created at": "تاريخ الإنشاء",

@@ -1,35 +1,24 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Transactions\Tables;
+namespace App\Filament\Admin\Resources\Branches\Tables;
 
+use Filament\Actions\AttachAction;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
+use Filament\Actions\DetachAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class TransactionsTable
+class UsersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('number')
-                    ->label(__('Transaction number'))
+                TextColumn::make('name')
+                    ->label(__('User name'))
                     ->searchable(),
-                TextColumn::make('type')
-                    ->label(__('Transaction type'))
-                    ->searchable(),
-                TextColumn::make('service')
-                    ->label(__('Service'))
-                    ->searchable(),
-                TextColumn::make('comment')
-                    ->label(__('Comment'))
-                    ->searchable(),
-                TextColumn::make('amount')
-                    ->label(__('Amount'))
-                    ->sortable(),
-                TextColumn::make('status')
-                    ->label(__('Status'))
+                TextColumn::make('username')
+                    ->label(__('Username'))
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label(__('Created at'))
@@ -45,13 +34,19 @@ class TransactionsTable
             ->filters([
                 //
             ])
+            ->headerActions([
+                AttachAction::make('user_attach')
+                    ->label(__('Attach User'))
+                    ->icon('heroicon-o-plus')
+                    ->hiddenLabel()
+                    ->tooltip(__('Attach User')),
+            ])
             ->recordActions([
-                EditAction::make()
-                    ->label(__('Edit Transaction'))
+                DetachAction::make('user_detach')
+                    ->label(__('Detach User'))
+                    ->icon('heroicon-o-minus')
                     ->hiddenLabel()
-                    ->icon('heroicon-o-pencil')
-                    ->hiddenLabel()
-                    ->tooltip(__('Edit')),
+                    ->tooltip(__('Detach User')),
             ])
             ->toolbarActions([
                 DeleteBulkAction::make(),

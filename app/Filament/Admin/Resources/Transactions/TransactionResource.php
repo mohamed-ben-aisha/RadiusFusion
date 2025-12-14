@@ -20,6 +20,26 @@ class TransactionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
+    public static function getModelLabel(): string
+    {
+        return __('Transaction');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Transactions');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Transactions');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('Company');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return TransactionForm::configure($schema);

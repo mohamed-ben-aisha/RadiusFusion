@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\Branches\Pages\CreateBranch;
 use App\Filament\Admin\Resources\Branches\Pages\EditBranch;
 use App\Filament\Admin\Resources\Branches\Pages\ListBranches;
 use App\Filament\Admin\Resources\Branches\Pages\ManageReseller;
+use App\Filament\Admin\Resources\Branches\Pages\ManageUsers;
 use App\Filament\Admin\Resources\Branches\Schemas\BranchForm;
 use App\Filament\Admin\Resources\Branches\Tables\BranchesTable;
 use App\Models\Branch;
@@ -44,7 +45,7 @@ class BranchResource extends Resource
 
     public static function getNavigationGroup(): string
     {
-        return __('System Management');
+        return __('Company');
     }
 
     public static function form(Schema $schema): Schema
@@ -69,6 +70,7 @@ class BranchResource extends Resource
         return $page->generateNavigationItems([
             EditBranch::class,
             ManageReseller::class,
+            ManageUsers::class,
         ]);
     }
 
@@ -79,6 +81,7 @@ class BranchResource extends Resource
             'create' => CreateBranch::route('/create'),
             'edit' => EditBranch::route('/{record}/edit'),
             'manage-reseller' => ManageReseller::route('/{record}/manage-reseller'),
+            'manage-users' => ManageUsers::route('/{record}/manage-users'),
         ];
     }
 }
