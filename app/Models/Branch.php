@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class branch extends Model
+class Branch extends Model
 {
     protected $fillable = [
         'name',
@@ -28,6 +28,6 @@ class branch extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'branch_user');
+        return $this->belongsToMany(User::class);
     }
 }

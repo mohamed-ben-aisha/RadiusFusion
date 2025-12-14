@@ -1,32 +1,41 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Branches\Tables;
+namespace App\Filament\Admin\Resources\Resellers\Tables;
 
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DetachAction;
+use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class UsersTable
+class ResellersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
-            ->emptyStateHeading(__('No users found'))
             ->columns([
                 TextColumn::make('name')
-                    ->label(__('Name'))
                     ->searchable(),
-                TextColumn::make('username')
-                    ->label(__('Username'))
+                TextColumn::make('branch.name')
+                    ->searchable(),
+                TextColumn::make('company')
+                    ->searchable(),
+                TextColumn::make('mobile')
+                    ->searchable(),
+                TextColumn::make('phone')
+                    ->searchable(),
+                TextColumn::make('credits')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('comment')
+                    ->searchable(),
+                TextColumn::make('status')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->label(__('Created at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->label(__('Updated at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -35,14 +44,12 @@ class UsersTable
                 //
             ])
             ->recordActions([
-                DetachAction::make('detach_user')
-                    ->label(__('Detach User'))
-                    ->icon('heroicon-o-trash')
-                    ->hiddenLabel()
-                    ->tooltip(__('Detach User')),
+                EditAction::make(),
             ])
             ->toolbarActions([
-                DeleteBulkAction::make(),
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
             ]);
     }
 }

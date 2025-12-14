@@ -1,4 +1,10 @@
 {
+    "Name": "الاسم",
+    "Detach User": "حذف مستخدم",
+    "No users found": "لا يوجد مستخدمين",
+    "Attach User": "اضافة مستخدم",
+    "User attached": "تم اضافة المستخدم",
+    "User already attached": "المستخدم مضاف مسبقاً",
     "Company": "الشركة",
     "Transaction number": "رقم العملية",
     "Transaction type": "نوع العملية",
