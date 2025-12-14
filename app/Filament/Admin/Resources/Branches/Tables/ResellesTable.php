@@ -2,6 +2,9 @@
 
 namespace App\Filament\Admin\Resources\Branches\Tables;
 
+use App\Filament\Admin\Resources\Branches\Schemas\CreditForm;
+use Filament\Actions\Action;
+use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -48,6 +51,13 @@ class ResellesTable
             ->filters([
                 //
             ])
+            ->headerActions([
+                CreateAction::make('reseller_create')
+                    ->label(__('Create Reseller'))
+                    ->icon('heroicon-o-plus')
+                    ->hiddenLabel()
+                    ->tooltip(__('Create Reseller')),
+            ])
             ->recordActions([
                 EditAction::make()
                     ->label(__('Reseller details'))
@@ -55,6 +65,22 @@ class ResellesTable
                     ->icon('heroicon-o-pencil')
                     ->hiddenLabel()
                     ->tooltip(__('Edit')),
+                Action::make('deposit_credits')
+                    ->label(__('Deposit Credits'))
+                    ->icon('heroicon-o-plus')
+                    ->hiddenLabel()
+                    ->tooltip(__('Deposit Credits'))
+                    ->modalWidth('md')
+                    ->schema(CreditForm::configure())
+                    ->action(fn (array $data, $record) => CreditForm::action($data, $record, 'deposit')),
+                Action::make('withdraw_credits')
+                    ->label(__('Withdraw Credits'))
+                    ->icon('heroicon-o-minus')
+                    ->hiddenLabel()
+                    ->tooltip(__('Withdraw Credits'))
+                    ->modalWidth('md')
+                    ->schema(CreditForm::configure())
+                    ->action(fn (array $data, $record) => CreditForm::action($data, $record, 'withdraw')),
             ])
             ->toolbarActions([
                 DeleteBulkAction::make(),
