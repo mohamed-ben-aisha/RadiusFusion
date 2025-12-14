@@ -1,4 +1,11 @@
 {
+    "Cards Management": "ادارة البطاقات",
+    "Service Orders": "أوامر العمل",
+    "Service Order": "أمر عمل",
+    "Clients": "الزبائن",
+    "Client": "زبون",
+    "Branches": "الفروع",
+    "Branch": "فرع",
     "System Management": "ادارة النظام",
     "Downrate": "سرعة التحميل",
     "Uprate": "سرعة الرفع",

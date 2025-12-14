@@ -22,6 +22,26 @@ class ServiceOrderResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'client_id';
 
+    public static function getModelLabel(): string
+    {
+        return __('Service Order');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Service Orders');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Service Orders');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('Clients');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return ServiceOrderForm::configure($schema);

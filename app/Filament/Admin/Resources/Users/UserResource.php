@@ -37,6 +37,11 @@ class UserResource extends Resource
         return __('Users');
     }
 
+    public static function getNavigationGroup(): string
+    {
+        return __('System Management');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);

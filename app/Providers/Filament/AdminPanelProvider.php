@@ -38,6 +38,11 @@ class AdminPanelProvider extends PanelProvider
                 url: asset(asset('fonts/font.css')),
                 provider: LocalFontProvider::class,
             )
+            ->navigationGroups([
+                __('Clients'),
+                __('Cards Management'),
+                __('System Management'),
+            ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\Filament\Admin\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\Filament\Admin\Pages')
             ->pages([

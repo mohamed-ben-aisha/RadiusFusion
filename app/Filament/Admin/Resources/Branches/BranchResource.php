@@ -22,6 +22,26 @@ class BranchResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getModelLabel(): string
+    {
+        return __('Branch');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Branches');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Branches');
+    }
+
+    public static function getNavigationGroup(): string
+    {
+        return __('System Management');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return BranchForm::configure($schema);

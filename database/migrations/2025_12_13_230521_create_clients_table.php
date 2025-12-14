@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->integer('srvid');
             $table->dateTime('expiration');
-            $table->string('uptimelimit');
-            $table->string('comment')->nullable();
+            $table->integer('uptimelimit');
             $table->integer('acctype');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
