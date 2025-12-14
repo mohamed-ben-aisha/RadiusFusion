@@ -6,6 +6,7 @@ use App\Filament\Admin\Resources\Branches\Pages\CreateBranch;
 use App\Filament\Admin\Resources\Branches\Pages\EditBranch;
 use App\Filament\Admin\Resources\Branches\Pages\ListBranches;
 use App\Filament\Admin\Resources\Branches\Pages\ManageReseller;
+use App\Filament\Admin\Resources\Branches\Pages\ManageTransactions;
 use App\Filament\Admin\Resources\Branches\Pages\ManageUsers;
 use App\Filament\Admin\Resources\Branches\Schemas\BranchForm;
 use App\Filament\Admin\Resources\Branches\Tables\BranchesTable;
@@ -71,6 +72,7 @@ class BranchResource extends Resource
             EditBranch::class,
             ManageReseller::class,
             ManageUsers::class,
+            ManageTransactions::class,
         ]);
     }
 
@@ -82,6 +84,7 @@ class BranchResource extends Resource
             'edit' => EditBranch::route('/{record}/edit'),
             'manage-reseller' => ManageReseller::route('/{record}/manage-reseller'),
             'manage-users' => ManageUsers::route('/{record}/manage-users'),
+            'manage-transactions' => ManageTransactions::route('/{record}/manage-transactions'),
         ];
     }
 }

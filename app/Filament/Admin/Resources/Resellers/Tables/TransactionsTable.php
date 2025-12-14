@@ -3,33 +3,32 @@
 namespace App\Filament\Admin\Resources\Resellers\Tables;
 
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ResellersTable
+class TransactionsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->label(__('Reseller name'))
+                TextColumn::make('number')
+                    ->label(__('Transaction number'))
                     ->searchable(),
                 TextColumn::make('branch.name')
                     ->label(__('Branch'))
                     ->searchable(),
-                TextColumn::make('company')
-                    ->label(__('Company name'))
+                TextColumn::make('type')
+                    ->label(__('Transaction type'))
                     ->searchable(),
-                TextColumn::make('mobile')
-                    ->label(__('Mobile'))
+                TextColumn::make('service')
+                    ->label(__('Service'))
                     ->searchable(),
-                TextColumn::make('phone')
-                    ->label(__('Phone'))
+                TextColumn::make('comment')
+                    ->label(__('Comment'))
                     ->searchable(),
-                TextColumn::make('credits')
-                    ->label(__('Credits'))
+                TextColumn::make('amount')
+                    ->label(__('Amount'))
                     ->sortable(),
                 TextColumn::make('status')
                     ->label(__('Status'))
@@ -49,12 +48,7 @@ class ResellersTable
                 //
             ])
             ->recordActions([
-                EditAction::make()
-                    ->label(__('Edit Reseller'))
-                    ->hiddenLabel()
-                    ->icon('heroicon-o-pencil')
-                    ->hiddenLabel()
-                    ->tooltip(__('Edit')),
+                //
             ])
             ->toolbarActions([
                 DeleteBulkAction::make(),

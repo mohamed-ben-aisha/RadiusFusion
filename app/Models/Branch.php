@@ -30,4 +30,9 @@ class Branch extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
