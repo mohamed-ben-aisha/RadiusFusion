@@ -16,7 +16,11 @@ return new class extends Migration
             $table->decimal('price_per_card')->default(0);
             $table->decimal('total_amount')->default(0);
             $table->string('status')->nullable();
+            $table->string('type')->default('hotspot');
             $table->string('note')->nullable();
+
+            $table->foreign('server_id')->references('id')->on('servers');
+
             $table->timestamps();
         });
     }
