@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('type')->default('hotspot');
             $table->string('note')->nullable();
 
-            $table->foreign('server_id')->references('id')->on('servers');
+            $table->foreignId('server_id')->references('id')->on('servers');
 
             $table->timestamps();
         });

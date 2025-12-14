@@ -5,10 +5,13 @@ namespace App\Filament\Admin\Resources\Branches;
 use App\Filament\Admin\Resources\Branches\Pages\CreateBranch;
 use App\Filament\Admin\Resources\Branches\Pages\EditBranch;
 use App\Filament\Admin\Resources\Branches\Pages\ListBranches;
+use App\Filament\Admin\Resources\Branches\Pages\ManageReseller;
 use App\Filament\Admin\Resources\Branches\Schemas\BranchForm;
 use App\Filament\Admin\Resources\Branches\Tables\BranchesTable;
 use App\Models\Branch;
 use BackedEnum;
+use Filament\Pages\Enums\SubNavigationPosition;
+use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -19,6 +22,8 @@ class BranchResource extends Resource
     protected static ?string $model = Branch::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -59,12 +64,21 @@ class BranchResource extends Resource
         ];
     }
 
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        return $page->generateNavigationItems([
+            EditBranch::class,
+            ManageReseller::class,
+        ]);
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => ListBranches::route('/'),
             'create' => CreateBranch::route('/create'),
             'edit' => EditBranch::route('/{record}/edit'),
+            'manage-reseller' => ManageReseller::route('/{record}/manage-reseller'),
         ];
     }
 }
