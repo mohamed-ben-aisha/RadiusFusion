@@ -34,6 +34,6 @@ env:
     - DB_PASSWORD
 
 volumes:
-  - /var/www/html/RadiusFusion/storage:/app/storage
+  - "/var/www/html/RadiusFusion/storage:/app/storage"
 
 asset-path: /app/public
