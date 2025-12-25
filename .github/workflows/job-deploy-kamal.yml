@@ -1,4 +1,5 @@
 name: job-deploy-kamal.yml
+
 on:
   workflow_call:
     inputs:
@@ -28,6 +29,7 @@ on:
 
 env:
   DOCKER_BUILDKIT: 1
+  KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
   APP_ENV: ${{ secrets.APP_ENV }}
   APP_KEY: ${{ secrets.APP_KEY }}
   DB_HOST: ${{ secrets.DB_HOST }}
