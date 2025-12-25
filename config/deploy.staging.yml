@@ -4,6 +4,12 @@ servers:
       - 102.203.200.24
     cmd: /usr/local/bin/entrypoint.sh
 
+proxy:
+  ssl: true
+  host: mun.lamahtech.com
+  app_port: 8080
+  forward_headers: true
+
 env:
   clear:
     APP_ENV: staging
