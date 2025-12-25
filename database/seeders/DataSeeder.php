@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\branch;
+use App\Models\Branch;
 use App\Models\Reseller;
 use App\Models\Server;
 use Illuminate\Database\Seeder;

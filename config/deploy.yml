@@ -1,0 +1,39 @@
+# Name of your application. Used to uniquely configure containers.
+service: radiusfusion
+image: root/radiusfusion
+
+registry:
+  username: root
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+  dockerfile: docker/Dockerfile
+  context: .
+
+env:
+  clear:
+    RUN_MIGRATIONS: true
+
+    APP_NAME: radius-fusion
+
+    APP_LOCALE: ar
+    APP_FALLBACK_LOCALE: en
+    APP_FAKER_LOCALE: en_US
+
+    APP_MAINTENANCE_DRIVER: file
+
+    DB_CONNECTION: pgsql
+  secret:
+    - APP_KEY
+    - DB_HOST
+    - DB_PORT
+    - DB_DATABASE
+    - DB_USERNAME
+    - DB_PASSWORD
+
+volumes:
+  - /var/www/html/RadiusFusion/storage:/app/storage
+
+asset-path: /app/public
