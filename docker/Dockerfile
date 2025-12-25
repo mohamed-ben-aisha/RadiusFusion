@@ -114,4 +114,4 @@ ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # Basic healthcheck against the root path; adjust as needed
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD php -r "exit(@fsockopen('127.0.0.1', 8080) ? 0 : 1);"
+  CMD php -r "exit(@fsockopen('127.0.0.1', 80) ? 0 : 1);"
