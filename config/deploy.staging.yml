@@ -6,7 +6,7 @@ servers:
 
 proxy:
   ssl: true
-  host: mun.lamahtech.com
+  host: stt.mohamed.ly
   app_port: 8080
   forward_headers: true
 
