@@ -1,6 +1,6 @@
 # Name of your application. Used to uniquely configure containers.
 service: radiusfusion
-image: root/radiusfusion
+image: mohamedbenaisha/radiusfusion
 
 registry:
   username: mohamedbenaisha

@@ -93,7 +93,7 @@ jobs:
             ${{ env.IMAGE }}:latest
             ${{ env.IMAGE }}:${{ env.IMAGE_TAG }}
           labels: |
-            service=municipality
+            service=radiusfusion
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
