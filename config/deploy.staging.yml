@@ -17,7 +17,7 @@ accessories:
     host: 102.203.200.24
     port: 5432
     env:
-      secrets:
+      secret:
         - DB_PASSWORD
         - DB_USERNAME
         - DB_DATABASE
