@@ -78,7 +78,7 @@ jobs:
 
       - name: Set image tag
         run: |
-          echo "IMAGE=root/radiusfusion" >> "$GITHUB_ENV"
+          echo "IMAGE=mohamedbenaisha/radiusfusion" >> "$GITHUB_ENV"
           echo "IMAGE_TAG=${GITHUB_SHA}" >> "$GITHUB_ENV"
 
       - name: Build and push (with GHA cache)
