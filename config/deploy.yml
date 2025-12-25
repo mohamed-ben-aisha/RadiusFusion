@@ -3,7 +3,7 @@ service: radiusfusion
 image: root/radiusfusion
 
 registry:
-  username: root
+  username: mohamedbenaisha
   password:
     - KAMAL_REGISTRY_PASSWORD
 
