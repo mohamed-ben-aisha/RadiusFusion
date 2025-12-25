@@ -24,6 +24,7 @@ class User extends Authenticatable implements FilamentUser
      * @var list<string>
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
@@ -57,10 +58,10 @@ class User extends Authenticatable implements FilamentUser
         return true;
     }
 
-    public function getAuthIdentifierName(): string
-    {
-        return 'username';
-    }
+    // public function getAuthIdentifierName(): string
+    // {
+    //     return 'username';
+    // }
 
     public function branches(): BelongsToMany
     {
