@@ -21,7 +21,7 @@ php artisan route:cache || true
 php artisan view:cache || true
 php artisan event:cache || true
 php artisan filament:optimize || true
-php artisan scribe:generate || true
+#php artisan scribe:generate || true
 
 # Start process supervisor which will run web + workers
 exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
