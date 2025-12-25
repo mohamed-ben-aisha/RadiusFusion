@@ -36,4 +36,4 @@ env:
 volumes:
   - "/var/www/html/RadiusFusion/storage:/app/storage"
 
-asset-path: /app/public
+asset_path: /app/public
