@@ -87,11 +87,6 @@ RUN mkdir -p storage bootstrap/cache \
     && chown -R www-data:www-data /app/public/storage \
     && chmod -R ug+rwX /app/public/storage
 
-
-# Create Caddy directories and give ownership to www-data
-RUN mkdir -p /data/caddy /config/caddy \
-    && chown -R www-data:www-data /data/caddy /config/caddy
-
 # Environment defaults for production safety (can be overridden at deploy time)
 ENV APP_ENV=production \
     APP_DEBUG=false \
