@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Users\Tables;
+namespace App\Filament\Admin\Resources\Branches\Tables;
 
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
+use Filament\Actions\DetachAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -12,6 +12,7 @@ class UsersTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->emptyStateHeading(__('No users found'))
             ->columns([
                 TextColumn::make('name')
                     ->label(__('Name'))
@@ -19,17 +20,13 @@ class UsersTable
                 TextColumn::make('username')
                     ->label(__('Username'))
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label(__('Email address'))
-                    ->searchable(),
-                TextColumn::make('credits')
-                    ->label(__('Credits'))
-                    ->sortable(),
                 TextColumn::make('created_at')
+                    ->label(__('Created at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('Updated at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -38,12 +35,11 @@ class UsersTable
                 //
             ])
             ->recordActions([
-                EditAction::make()
-                    ->label(__('Edit User'))
+                DetachAction::make('detach_user')
+                    ->label(__('Detach User'))
+                    ->icon('heroicon-o-trash')
                     ->hiddenLabel()
-                    ->icon('heroicon-o-pencil')
-                    ->hiddenLabel()
-                    ->tooltip(__('Edit')),
+                    ->tooltip(__('Detach User')),
             ])
             ->toolbarActions([
                 DeleteBulkAction::make(),

@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('branches', function (Blueprint $table) {
+        Schema::create('reseller_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('server_id');
-            $table->decimal('credits')->default(0);
-            $table->string('comment')->nullable();
+
+            $table->foreignId('reseller_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('reseller_user');
     }
 };

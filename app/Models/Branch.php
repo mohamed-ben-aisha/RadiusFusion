@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class branch extends Model
+class Branch extends Model
 {
     protected $fillable = [
         'name',
         'server_id',
+        'credits',
         'comment',
     ];
 
@@ -22,5 +24,15 @@ class branch extends Model
     public function resellers(): HasMany
     {
         return $this->hasMany(Reseller::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

@@ -1,35 +1,45 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Users\Tables;
+namespace App\Filament\Admin\Resources\Resellers\Tables;
 
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class UsersTable
+class TransactionsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->label(__('Name'))
+                TextColumn::make('number')
+                    ->label(__('Transaction number'))
                     ->searchable(),
-                TextColumn::make('username')
-                    ->label(__('Username'))
+                TextColumn::make('branch.name')
+                    ->label(__('Branch'))
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label(__('Email address'))
+                TextColumn::make('type')
+                    ->label(__('Transaction type'))
                     ->searchable(),
-                TextColumn::make('credits')
-                    ->label(__('Credits'))
+                TextColumn::make('service')
+                    ->label(__('Service'))
+                    ->searchable(),
+                TextColumn::make('comment')
+                    ->label(__('Comment'))
+                    ->searchable(),
+                TextColumn::make('amount')
+                    ->label(__('Amount'))
                     ->sortable(),
+                TextColumn::make('status')
+                    ->label(__('Status'))
+                    ->searchable(),
                 TextColumn::make('created_at')
+                    ->label(__('Created at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('Updated at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -38,12 +48,7 @@ class UsersTable
                 //
             ])
             ->recordActions([
-                EditAction::make()
-                    ->label(__('Edit User'))
-                    ->hiddenLabel()
-                    ->icon('heroicon-o-pencil')
-                    ->hiddenLabel()
-                    ->tooltip(__('Edit')),
+                //
             ])
             ->toolbarActions([
                 DeleteBulkAction::make(),

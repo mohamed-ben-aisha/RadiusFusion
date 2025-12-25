@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Filament\Admin\Resources\Branches;
+namespace App\Filament\Admin\Resources\Resellers;
 
-use App\Filament\Admin\Resources\Branches\Pages\CreateBranch;
-use App\Filament\Admin\Resources\Branches\Pages\EditBranch;
-use App\Filament\Admin\Resources\Branches\Pages\ListBranches;
-use App\Filament\Admin\Resources\Branches\Pages\ManageReseller;
-use App\Filament\Admin\Resources\Branches\Pages\ManageTransactions;
-use App\Filament\Admin\Resources\Branches\Pages\ManageUsers;
-use App\Filament\Admin\Resources\Branches\Schemas\BranchForm;
-use App\Filament\Admin\Resources\Branches\Tables\BranchesTable;
-use App\Models\Branch;
+use App\Filament\Admin\Resources\Resellers\Pages\CreateReseller;
+use App\Filament\Admin\Resources\Resellers\Pages\EditReseller;
+use App\Filament\Admin\Resources\Resellers\Pages\ListResellers;
+use App\Filament\Admin\Resources\Resellers\Pages\ManageTransactions;
+use App\Filament\Admin\Resources\Resellers\Schemas\ResellerForm;
+use App\Filament\Admin\Resources\Resellers\Tables\ResellersTable;
+use App\Models\Reseller;
 use BackedEnum;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
@@ -19,29 +17,27 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class BranchResource extends Resource
+class ResellerResource extends Resource
 {
-    protected static ?string $model = Branch::class;
+    protected static ?string $model = Reseller::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
-    protected static ?string $recordTitleAttribute = 'name';
-
     public static function getModelLabel(): string
     {
-        return __('Branch');
+        return __('Reseller');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Branches');
+        return __('Resellers');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('Branches');
+        return __('Resellers');
     }
 
     public static function getNavigationGroup(): string
@@ -51,12 +47,12 @@ class BranchResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return BranchForm::configure($schema);
+        return ResellerForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return BranchesTable::configure($table);
+        return ResellersTable::configure($table);
     }
 
     public static function getRelations(): array
@@ -69,9 +65,7 @@ class BranchResource extends Resource
     public static function getRecordSubNavigation(Page $page): array
     {
         return $page->generateNavigationItems([
-            EditBranch::class,
-            ManageReseller::class,
-            ManageUsers::class,
+            EditReseller::class,
             ManageTransactions::class,
         ]);
     }
@@ -79,11 +73,9 @@ class BranchResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListBranches::route('/'),
-            'create' => CreateBranch::route('/create'),
-            'edit' => EditBranch::route('/{record}/edit'),
-            'manage-reseller' => ManageReseller::route('/{record}/manage-reseller'),
-            'manage-users' => ManageUsers::route('/{record}/manage-users'),
+            'index' => ListResellers::route('/'),
+            'create' => CreateReseller::route('/create'),
+            'edit' => EditReseller::route('/{record}/edit'),
             'manage-transactions' => ManageTransactions::route('/{record}/manage-transactions'),
         ];
     }

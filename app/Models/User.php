@@ -7,6 +7,7 @@ use App\Traits\ManagerTrait;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -23,6 +24,7 @@ class User extends Authenticatable implements FilamentUser
      * @var list<string>
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
@@ -56,8 +58,13 @@ class User extends Authenticatable implements FilamentUser
         return true;
     }
 
-    public function getAuthIdentifierName(): string
+    // public function getAuthIdentifierName(): string
+    // {
+    //     return 'username';
+    // }
+
+    public function branches(): BelongsToMany
     {
-        return 'username';
+        return $this->belongsToMany(Branch::class);
     }
 }
