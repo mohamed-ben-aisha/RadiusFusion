@@ -5,6 +5,7 @@ FROM dunglas/frankenphp:php8.4 AS php-builder
 # Install required PHP extensions for the app
 # - add curl to satisfy ext-curl requirement
 RUN install-php-extensions \
+    gd \
     pdo_pgsql \
     intl \
     zip \
@@ -32,7 +33,7 @@ COPY . /app
 RUN composer install --no-dev --no-interaction --prefer-dist --no-ansi --no-progress --optimize-autoloader --classmap-authoritative
 
 # Build static assets with Node in a separate stage
-FROM node:22-alpine AS frontend
+FROM node:20-alpine AS frontend
 WORKDIR /app
 COPY package.json package-lock.json /app/
 RUN npm ci --no-audit --no-fund
@@ -101,12 +102,12 @@ RUN chmod +x /usr/local/bin/entrypoint.sh \
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 # Enable OPCache for performance and raise body/time/memory limits for large transfers
-RUN sed -i "s/^;opcache.enable=.*/opcache.enable=1/" "$PHP_INI_DIR/php.ini" \
+RUN sed -i "s/^;opcache.enable=.*/opcache.enable=1/" "$PHP_INI_DIR/php.ini"
 #RUN sed -i "s/^;opcache.enable=.*/opcache.enable=1/" "$PHP_INI_DIR/php.ini" \
- && sed -i "s/^;\?post_max_size = .*/post_max_size = 512M/" "$PHP_INI_DIR/php.ini" \
- && sed -i "s/^;\?upload_max_filesize = .*/upload_max_filesize = 512M/" "$PHP_INI_DIR/php.ini" \
+# && sed -i "s/^;\?post_max_size = .*/post_max_size = 200M/" "$PHP_INI_DIR/php.ini" \
+# && sed -i "s/^;\?upload_max_filesize = .*/upload_max_filesize = 200M/" "$PHP_INI_DIR/php.ini" \
 # && sed -i "s/^;\?max_input_time = .*/max_input_time = 300/" "$PHP_INI_DIR/php.ini" \
- && sed -i "s/^;\?memory_limit = .*/memory_limit = 512M/" "$PHP_INI_DIR/php.ini"
+# && sed -i "s/^;\?memory_limit = .*/memory_limit = 512M/" "$PHP_INI_DIR/php.ini" \
 # && sed -i "s/^;\?output_buffering = .*/output_buffering = Off/" "$PHP_INI_DIR/php.ini"
 
 # Set entrypoint (supervisord is launched from the script)
