@@ -19,9 +19,6 @@ class ResellesTable
                 TextColumn::make('name')
                     ->label(__('Reseller name'))
                     ->searchable(),
-                TextColumn::make('branch.name')
-                    ->label(__('Branch'))
-                    ->searchable(),
                 TextColumn::make('mobile')
                     ->label(__('Mobile'))
                     ->searchable(),
@@ -65,22 +62,22 @@ class ResellesTable
                     ->icon('heroicon-o-pencil')
                     ->hiddenLabel()
                     ->tooltip(__('Edit')),
-                Action::make('deposit_credits')
-                    ->label(__('Deposit Credits'))
-                    ->icon('heroicon-o-plus')
-                    ->hiddenLabel()
-                    ->tooltip(__('Deposit Credits'))
-                    ->modalWidth('md')
-                    ->schema(CreditForm::configure())
-                    ->action(fn (array $data, $record) => CreditForm::action($data, $record, 'deposit')),
-                Action::make('withdraw_credits')
-                    ->label(__('Withdraw Credits'))
-                    ->icon('heroicon-o-minus')
-                    ->hiddenLabel()
-                    ->tooltip(__('Withdraw Credits'))
-                    ->modalWidth('md')
-                    ->schema(CreditForm::configure())
-                    ->action(fn (array $data, $record) => CreditForm::action($data, $record, 'withdraw')),
+                //                Action::make('deposit_credits')
+                //                    ->label(__('Deposit Credits'))
+                //                    ->icon('heroicon-o-plus')
+                //                    ->hiddenLabel()
+                //                    ->tooltip(__('Deposit Credits'))
+                //                    ->modalWidth('md')
+                //                    ->schema(CreditForm::configure())
+                //                    ->action(fn (array $data, $record) => CreditForm::action($data, $record, 'deposit')),
+                //                Action::make('withdraw_credits')
+                //                    ->label(__('Withdraw Credits'))
+                //                    ->icon('heroicon-o-minus')
+                //                    ->hiddenLabel()
+                //                    ->tooltip(__('Withdraw Credits'))
+                //                    ->modalWidth('md')
+                //                    ->schema(CreditForm::configure())
+                //                    ->action(fn (array $data, $record) => CreditForm::action($data, $record, 'withdraw')),
             ])
             ->toolbarActions([
                 DeleteBulkAction::make(),

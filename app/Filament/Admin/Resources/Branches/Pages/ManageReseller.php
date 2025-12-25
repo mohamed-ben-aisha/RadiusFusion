@@ -22,7 +22,7 @@ class ManageReseller extends ManageRelatedRecords
 
     public function getTitle(): string
     {
-        return __('Resellers');
+        return __('Resellers').' - '.$this->getOwnerRecord()->name;
     }
 
     public function table(Table $table): Table

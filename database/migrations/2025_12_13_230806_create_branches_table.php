@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('server_id');
+            $table->decimal('credits')->default(0);
             $table->string('comment')->nullable();
             $table->timestamps();
         });
