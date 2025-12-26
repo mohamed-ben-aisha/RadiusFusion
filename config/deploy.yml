@@ -7,13 +7,6 @@ registry:
   password:
     - KAMAL_REGISTRY_PASSWORD
 
-# Configure the proxy to point to port 8080
-proxy:
-  app_port: 8080
-  healthcheck:
-    path: /up
-    interval: 5
-
 builder:
   arch: amd64
   dockerfile: docker/Dockerfile

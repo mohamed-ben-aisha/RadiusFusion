@@ -24,4 +24,4 @@ php artisan filament:optimize || true
 #php artisan scribe:generate || true
 
 # Start process supervisor which will run web + workers
-exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+#exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
