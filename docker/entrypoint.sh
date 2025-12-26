@@ -26,4 +26,4 @@ php artisan filament:optimize || true
 echo 'Starting supervisor...'
 
 # Start process supervisor which will run web + workers
-exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+#exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
