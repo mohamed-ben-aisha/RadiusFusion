@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->foreignId('branch_id')->nullable()->after('id');
+            $table->foreignId('branch_id')->references('id')->on('branches');
         });
     }
 
     public function down(): void
     {
         Schema::table('clients', function (Blueprint $table) {
-            $table->dropColumn('branch_id');
+            $table->dropForeign(['branch_id']);
         });
     }
 };

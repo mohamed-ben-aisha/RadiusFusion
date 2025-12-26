@@ -17,12 +17,10 @@ class Client extends Model
         'email',
         'phone',
         'mobile',
-        'srvid',
-        'expiration',
-        'uptimelimit',
         'comment',
-        'acctype',
+        'type_account',
         'branch_id',
+        'status',
     ];
 
     protected function casts(): array
