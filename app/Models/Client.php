@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Client extends Model
 {
@@ -21,6 +22,7 @@ class Client extends Model
         'uptimelimit',
         'comment',
         'acctype',
+        'branch_id',
     ];
 
     protected function casts(): array
@@ -28,5 +30,10 @@ class Client extends Model
         return [
             'expiration' => 'datetime',
         ];
+    }
+
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
     }
 }
