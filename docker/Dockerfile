@@ -92,6 +92,9 @@ ENV APP_ENV=production \
     APP_DEBUG=false \
     RUN_MIGRATIONS=false
 
+RUN mkdir -p /data/caddy /config/caddy \
+    && chown -R www-data:www-data /data /config
+
 # Expose unprivileged port and drop root
 EXPOSE 8080
 
