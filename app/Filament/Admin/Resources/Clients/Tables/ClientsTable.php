@@ -13,37 +13,42 @@ class ClientsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->emptyStateHeading(__('No clients found'))
             ->columns([
                 TextColumn::make('firstname')
+                    ->label(__('First name'))
                     ->searchable(),
                 TextColumn::make('lastname')
+                    ->label(__('Last name'))
                     ->searchable(),
                 TextColumn::make('username')
-                    ->searchable(),
-                TextColumn::make('company')
-                    ->searchable(),
-                TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
+                    ->label(__('Username'))
                     ->searchable(),
                 TextColumn::make('phone')
+                    ->label(__('Phone'))
                     ->searchable(),
                 TextColumn::make('mobile')
+                    ->label(__('Mobile'))
                     ->searchable(),
-                TextColumn::make('srvid')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('expiration')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('uptimelimit')
+                //                TextColumn::make('company')
+                //                    ->searchable(),
+                TextColumn::make('address')
+                    ->label(__('Address'))
                     ->searchable(),
-                TextColumn::make('comment')
-                    ->searchable(),
-                TextColumn::make('acctype')
-                    ->numeric()
-                    ->sortable(),
+
+                //                TextColumn::make('srvid')
+                //                    ->numeric()
+                //                    ->sortable(),
+                //                TextColumn::make('expiration')
+                //                    ->dateTime()
+                //                    ->sortable(),
+                //                TextColumn::make('uptimelimit')
+                //                    ->searchable(),
+                //                TextColumn::make('comment')
+                //                    ->searchable(),
+                //                TextColumn::make('acctype')
+                //                    ->numeric()
+                //                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
