@@ -103,13 +103,13 @@ COPY docker/supervisord.conf /etc/supervisor/supervisord.conf
 RUN chmod +x /usr/local/bin/entrypoint.sh \
     && mkdir -p /var/log/supervisor
 
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-# Enable OPCache for performance and raise body/time/memory limits for large transfers
-RUN sed -i "s/^;opcache.enable=.*/opcache.enable=1/" "$PHP_INI_DIR/php.ini"
+#RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+## Enable OPCache for performance and raise body/time/memory limits for large transfers
+#RUN sed -i "s/^;opcache.enable=.*/opcache.enable=1/" "$PHP_INI_DIR/php.ini"
 
 ## Set entrypoint (supervisord is launched from the script)
-#ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 #
 ## Basic healthcheck against the root path; adjust as needed
-#HEALTHCHECK --interval=5s --timeout=5s --start-period=5s --retries=3 \
-#  CMD php -r "exit(@fsockopen('127.0.0.1', 8080) ? 0 : 1);"
+HEALTHCHECK --interval=5s --timeout=5s --start-period=5s --retries=3 \
+  CMD php -r "exit(@fsockopen('127.0.0.1', 8080) ? 0 : 1);"
