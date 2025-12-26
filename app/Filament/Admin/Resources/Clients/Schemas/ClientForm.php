@@ -28,6 +28,11 @@ class ClientForm
                             ->label(__('Account type'))
                             ->options(ClientTypeAccountEnum::options())
                             ->required(),
+
+                        Select::make('profile_id')
+                            ->label(__('Profile'))
+                            ->relationship('profile', 'name')
+                            ->required(),
                     ]),
 
                 Section::make(__('Client details'))

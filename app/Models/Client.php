@@ -20,6 +20,7 @@ class Client extends Model
         'comment',
         'type_account',
         'branch_id',
+        'profile_id',
         'status',
     ];
 
@@ -33,5 +34,10 @@ class Client extends Model
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(Profile::class);
     }
 }

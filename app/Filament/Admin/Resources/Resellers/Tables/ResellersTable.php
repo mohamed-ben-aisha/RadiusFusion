@@ -12,6 +12,7 @@ class ResellersTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->emptyStateHeading(__('No resellers found'))
             ->columns([
                 TextColumn::make('name')
                     ->label(__('Reseller name'))

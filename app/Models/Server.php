@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Server extends Model
 {
@@ -39,5 +40,10 @@ class Server extends Model
             get: fn ($value) => decrypt($value),
             set: fn ($value) => encrypt($value),
         );
+    }
+
+    public function profiles(): BelongsToMany
+    {
+        return $this->belongsToMany(Profile::class);
     }
 }
