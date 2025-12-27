@@ -26,13 +26,13 @@ class ProfilesTable
                     ->sortable(),
                 TextColumn::make('unitprice')
                     ->label(__('Unit price')),
-                IconColumn::make('limitdownload')
+                IconColumn::make('limitdl')
                     ->label(__('Limit download'))
                     ->boolean(),
-                IconColumn::make('limitupload')
+                IconColumn::make('limitul')
                     ->label(__('Limit upload'))
                     ->boolean(),
-                IconColumn::make('limitexpire')
+                IconColumn::make('limitexpiration')
                     ->label(__('Limit expire'))
                     ->boolean(),
                 IconColumn::make('limituptime')

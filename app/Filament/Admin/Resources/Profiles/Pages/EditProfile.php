@@ -3,6 +3,7 @@
 namespace App\Filament\Admin\Resources\Profiles\Pages;
 
 use App\Filament\Admin\Resources\Profiles\ProfileResource;
+use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
