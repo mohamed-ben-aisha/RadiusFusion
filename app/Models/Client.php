@@ -17,12 +17,11 @@ class Client extends Model
         'email',
         'phone',
         'mobile',
-        'srvid',
-        'expiration',
-        'uptimelimit',
         'comment',
-        'acctype',
+        'type_account',
         'branch_id',
+        'profile_id',
+        'status',
     ];
 
     protected function casts(): array
@@ -35,5 +34,10 @@ class Client extends Model
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function profile(): BelongsTo
+    {
+        return $this->belongsTo(Profile::class);
     }
 }

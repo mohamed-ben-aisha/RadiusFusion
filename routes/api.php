@@ -3,7 +3,7 @@
 use App\Helpers\ConverterUnitHelper;
 use App\Models\RM\RMUser;
 use App\Models\Server;
-use App\Services\DMARadiusService;
+use App\Services\DMARadius;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +32,7 @@ Route::get('/test', function () {
     //    DB::purge('dynamic_mysql');
     //    DB::reconnect('dynamic_mysql');
 
-    $dma = new DMARadiusService($config);
+    $dma = new DMARadius($config);
     //    $invoice = $dma->addCredits([
     //        'invgroup' => '0',
     //        'invnum' => '2025-0010',

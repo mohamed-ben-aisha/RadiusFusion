@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Client;
 use App\Models\RM\RMInvoice;
+use App\Models\RM\RMUser;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
-class DMARadiusService
+class DMARadius
 {
     public function __construct($config)
     {
@@ -14,6 +16,30 @@ class DMARadiusService
 
         DB::purge('dynamic_mysql');
         DB::reconnect('dynamic_mysql');
+    }
+
+    /**
+     * create a new client in radius manager
+     */
+    public function createClient(Client $client): void
+    {
+        RMUser::create([
+            'username' => $client->username,
+            'password' => $client->password,
+            'firstname' => $client->firstname ?? '',
+            'lastname' => $client->lastname ?? '',
+            'company' => $client->company ?? '',
+            'phone' => $client->phone ?? '',
+            'mobile' => $client->mobile ?? '',
+            'address' => $client->address ?? '',
+            'comment' => $client->comment ?? '',
+            'expiration' => $client->expiration ?? now()->addYear(),
+            'createdon' => now(),
+            'createdby' => 'RadiusFusion',
+            'owner' => 'RadiusFusion',
+            'lang' => 'ar',
+            'enableuser' => 1,
+        ]);
     }
 
     public function addCredits(array $data): RMInvoice

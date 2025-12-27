@@ -17,6 +17,7 @@ class RMUser extends Model
 
     protected $fillable = [
         'username',
+        'password',
         'uplimit',
         'downlimit',
         'comblimit',
@@ -37,6 +38,7 @@ class RMUser extends Model
         'owner',
         'lang',
         'lastlogoff',
+        'enableuser',
     ];
 
     public function service(): BelongsTo

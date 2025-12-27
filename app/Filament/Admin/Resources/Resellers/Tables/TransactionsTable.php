@@ -11,6 +11,7 @@ class TransactionsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->emptyStateHeading(__('No transactions found'))
             ->columns([
                 TextColumn::make('number')
                     ->label(__('Transaction number'))

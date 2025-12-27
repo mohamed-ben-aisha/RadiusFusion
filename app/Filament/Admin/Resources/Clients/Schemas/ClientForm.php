@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Clients\Schemas;
 
+use App\Enums\ClientTypeAccountEnum;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -23,8 +24,14 @@ class ClientForm
                             ->relationship('branch', 'name')
                             ->required(),
 
-                        Select::make('acctype')
+                        Select::make('type_account')
                             ->label(__('Account type'))
+                            ->options(ClientTypeAccountEnum::options())
+                            ->required(),
+
+                        Select::make('profile_id')
+                            ->label(__('Profile'))
+                            ->relationship('profile', 'name')
                             ->required(),
                     ]),
 
@@ -45,18 +52,17 @@ class ClientForm
                             ->password()
                             ->required(),
                         TextInput::make('company')
-                            ->label(__('Company'))
-                            ->required(),
+                            ->label(__('Company')),
                         TextInput::make('address')
-                            ->label(__('Address'))
-                            ->required(),
-                        TextInput::make('email')
-                            ->label(__('Email address'))
-                            ->email(),
+                            ->label(__('Address')),
                         TextInput::make('phone')
                             ->label(__('Phone')),
                         TextInput::make('mobile')
-                            ->label(__('Mobile')),
+                            ->label(__('Mobile'))
+                            ->hint(__('Used for notifications')),
+                        TextInput::make('email')
+                            ->label(__('Email address'))
+                            ->email(),
                         TextArea::make('comment')
                             ->rows(3)
                             ->columnSpan(2)
