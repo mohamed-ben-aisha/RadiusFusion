@@ -4,7 +4,6 @@ namespace App\Filament\Admin\Resources\Clients\Pages;
 
 use App\Filament\Admin\Resources\Clients\ClientResource;
 use App\Models\Client;
-use App\Models\RM\RMUser;
 use App\Services\DMARadius;
 use Filament\Resources\Pages\CreateRecord;
 
